@@ -1,4 +1,4 @@
-print('Pyviewer v1.3 made by JUN')
+print('Pyviewer v1.4 made by JUN')
 from threading import current_thread
 import time
 import sys
