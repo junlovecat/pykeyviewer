@@ -1,4 +1,4 @@
-print('Pyviewer v1.5 made by JUN')
+print('Pyviewer v1.6 made by JUN')
 from threading import current_thread
 import time
 import sys
@@ -7,6 +7,7 @@ import win32api
 try:
     from keyboard import is_pressed
     import pygame
+    import threading
 except ModuleNotFoundError:
     import os
     os.system('pip install keyboard')
@@ -64,7 +65,7 @@ for i in range(len(keys)):
             blit[i][j]='m2'
         else:
             blit[i][j]=keys[i][j].upper()
-showkey,shownum,showtot,showcur,showavg=map(int,input().split())
+showkey,shownum,showtot,showcur,showavg,hitsound=map(int,input().split())
 tmp=0
 max=0
 sec=0
@@ -81,7 +82,9 @@ if(showavg+showcur+showtot+showcur,showavg==0):
 else:
     size=[100*linemax+5,100*(line+2)]
 pygame.init()
-pygame.display.set_caption("Pyviewer v1.5")
+pygame.mixer.init()
+select=pygame.mixer.Sound('select.wav')
+pygame.display.set_caption("Pyviewer v1.6")
 screen=pygame.display.set_mode(size)
 font=pygame.font.SysFont(None,30)
 ischecked=True
@@ -96,6 +99,8 @@ while(1):
                 if(ispressed(keys[linenum][x])):
                     pygame.draw.rect(screen,white,[x*100+5,linenum*100+5,90,90])
                     if(ispre[linenum][x]==0):
+                        if(hitsound):
+                            select.play()
                         ispre[linenum][x]=1
                         total[linenum][x]+=1
                         tmp+=1
@@ -104,6 +109,8 @@ while(1):
                 if(is_pressed(keys[linenum][x])):
                     pygame.draw.rect(screen,white,[x*100+5,linenum*100+5,90,90])
                     if(ispre[linenum][x]==0):
+                        if(hitsound):
+                            select.play()
                         ispre[linenum][x]=1
                         total[linenum][x]+=1
                         tmp+=1
