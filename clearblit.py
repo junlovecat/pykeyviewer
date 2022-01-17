@@ -8,8 +8,8 @@ class clearblit:
                 elif(keys[i][j]=='right'):blit[i][j]='m2'
                 else:blit[i][j]=keys[i][j].upper()
         return blit
-
 if __name__=='__main__':
+    from time import sleep
     print('This is not a main code.')
-    import sys
-    sys.exit()
+    sleep(200)
+    exit()
